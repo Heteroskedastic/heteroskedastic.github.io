@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>USAC Events</title>
+<title>USAC_Events</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -184,12 +184,25 @@ This data set includes all events, road, cross, mtb, track.... any competative e
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Top-event-Directors">Top event Directors<a class="anchor-link" href="#Top-event-Directors">&#182;</a></h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c1">## Top event Directors</span>
+<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/usac_event_2005_2015.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -199,11 +212,11 @@ This data set includes all events, road, cross, mtb, track.... any competative e
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/usac_event_2005_2015.csv&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">dg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;director&#39;</span><span class="p">)[</span><span class="s1">&#39;director&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">dg</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -214,61 +227,21 @@ This data set includes all events, road, cross, mtb, track.... any competative e
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>director
-David Berger                       254
-Robert Leibold                     209
-Tim Molyneaux                      123
-Don Edberg                         119
-Brian Holzhausen                    97
-William &apos;JR&apos; Petsko                 84
-Neal Boyd                           75
-Laszlo Vajtay                       65
-Chip Berezny                        62
-Richard Ruoff                       61
-David Butterworth                   60
-Rebecca Travieso                    60
-James Lowe                          57
-Tom Spiegel                         56
-Ronald Lindley                      54
-Frederick Phillips                  49
-Hal Miller                          48
-Alan Atwood                         48
-Bruce Dunn                          48
-Mark Guthart                        47
-James Bernstein                     46
-Louis Panigutti                     46
-Dieter Drake                        45
-Kenneth Mills                       45
-Dwayne Letterman                    45
-Donald Melhado                      43
-Keri Burns                          40
-Nippy (Edward) Feldhake             38
-Akira Sato                          36
-Steve Rosefield                     36
-Andrew Hollinger                    35
-Michael Weiss                       35
-Robert Wissman                      35
-Rebecca Wissman                     35
-David Benjes                        34
-Breakaway Event Productions LLC     34
-Erik Anderson                       34
-Darren Lightfield                   34
-Roger Harrison                      34
-Dean Peterson                       34
-Gary Turnbull                       33
-Tobin Behling                       33
-Jason Bradley                       32
-Robert Linden                       32
-Jeffrey Unruh                       32
-John Lefler Jr                      32
-Lisa Nye-Salladin                   31
-Marty Nothstein                     31
-Christopher Lotts                   30
-David Riemenschneider               30
+David Berger           254
+Robert Leibold         209
+Tim Molyneaux          123
+Don Edberg             119
+Brian Holzhausen        97
+William &apos;JR&apos; Petsko     84
+Neal Boyd               75
+Laszlo Vajtay           65
+Chip Berezny            62
+Richard Ruoff           61
 Name: director, dtype: int64</pre>
 </div>
 
@@ -278,27 +251,31 @@ Name: director, dtype: int64</pre>
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">dg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;director&#39;</span><span class="p">)[</span><span class="s1">&#39;director&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="n">dg</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-</pre></div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Top-states">Top states<a class="anchor-link" href="#Top-states">&#182;</a></h3>
 </div>
 </div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">ds</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">data_tools</span> <span class="k">import</span> <span class="n">states_abbr</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">states_abbr</span><span class="p">)]</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -309,62 +286,106 @@ Name: director, dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>state
-CA      1347
-TX       819
-PA       813
-NY       800
-NJ       575
-FL       572
-CO       556
-NC       547
-AZ       498
-IL       463
-TN       451
-OH       431
-WI       429
-GA       427
-VA       415
-IN       404
-MO       378
-MI       361
-KS       349
-WA       338
-IA       330
-AR       320
-OK       313
-ID       304
-MD       292
-MA       272
-MT       270
-UT       266
-NM       253
-MN       247
-CT       245
-LA       224
-SC       213
-AL       176
-KY       165
-NH       148
-NE       143
-VT       138
-MS       119
-NV       107
-WV        90
-OR        86
-RI        78
-ME        55
-DE        43
-HI        32
-SD        30
-WY        27
-DC        17
-RT29       4
-Name: state, dtype: int64</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11cb343c8&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
@@ -375,13 +396,122 @@ Name: state, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre> 
+<div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">data_tools</span> <span class="k">import</span> <span class="n">states_abbr</span>
+<span class="n">badstate</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">states_abbr</span><span class="p">)]</span>
+<span class="n">badstate</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/bad_state.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="How-about-a-Choropleth-map-now.">How about a Choropleth map now.<a class="anchor-link" href="#How-about-a-Choropleth-map-now.">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="kn">from</span> <span class="nn">data_tools</span> <span class="k">import</span> <span class="n">states_name_abbr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">states_name_abbr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&apos;Alabama&apos;: &apos;AL&apos;,
+ &apos;Alaska&apos;: &apos;AK&apos;,
+ &apos;American Samoa&apos;: &apos;AS&apos;,
+ &apos;Arizona&apos;: &apos;AZ&apos;,
+ &apos;Arkansas&apos;: &apos;AR&apos;,
+ &apos;California&apos;: &apos;CA&apos;,
+ &apos;Colorado&apos;: &apos;CO&apos;,
+ &apos;Connecticut&apos;: &apos;CT&apos;,
+ &apos;Delaware&apos;: &apos;DE&apos;,
+ &apos;District of Columbia&apos;: &apos;DC&apos;,
+ &apos;Florida&apos;: &apos;FL&apos;,
+ &apos;Georgia&apos;: &apos;GA&apos;,
+ &apos;Guam&apos;: &apos;GU&apos;,
+ &apos;Hawaii&apos;: &apos;HI&apos;,
+ &apos;Idaho&apos;: &apos;ID&apos;,
+ &apos;Illinois&apos;: &apos;IL&apos;,
+ &apos;Indiana&apos;: &apos;IN&apos;,
+ &apos;Iowa&apos;: &apos;IA&apos;,
+ &apos;Kansas&apos;: &apos;KS&apos;,
+ &apos;Kentucky&apos;: &apos;KY&apos;,
+ &apos;Louisiana&apos;: &apos;LA&apos;,
+ &apos;Maine&apos;: &apos;ME&apos;,
+ &apos;Maryland&apos;: &apos;MD&apos;,
+ &apos;Massachusetts&apos;: &apos;MA&apos;,
+ &apos;Michigan&apos;: &apos;MI&apos;,
+ &apos;Minnesota&apos;: &apos;MN&apos;,
+ &apos;Mississippi&apos;: &apos;MS&apos;,
+ &apos;Missouri&apos;: &apos;MO&apos;,
+ &apos;Montana&apos;: &apos;MT&apos;,
+ &apos;National&apos;: &apos;NA&apos;,
+ &apos;Nebraska&apos;: &apos;NE&apos;,
+ &apos;Nevada&apos;: &apos;NV&apos;,
+ &apos;New Hampshire&apos;: &apos;NH&apos;,
+ &apos;New Jersey&apos;: &apos;NJ&apos;,
+ &apos;New Mexico&apos;: &apos;NM&apos;,
+ &apos;New York&apos;: &apos;NY&apos;,
+ &apos;North Carolina&apos;: &apos;NC&apos;,
+ &apos;North Dakota&apos;: &apos;ND&apos;,
+ &apos;Northern Mariana Islands&apos;: &apos;MP&apos;,
+ &apos;Ohio&apos;: &apos;OH&apos;,
+ &apos;Oklahoma&apos;: &apos;OK&apos;,
+ &apos;Oregon&apos;: &apos;OR&apos;,
+ &apos;Pennsylvania&apos;: &apos;PA&apos;,
+ &apos;Puerto Rico&apos;: &apos;PR&apos;,
+ &apos;Rhode Island&apos;: &apos;RI&apos;,
+ &apos;South Carolina&apos;: &apos;SC&apos;,
+ &apos;South Dakota&apos;: &apos;SD&apos;,
+ &apos;Tennessee&apos;: &apos;TN&apos;,
+ &apos;Texas&apos;: &apos;TX&apos;,
+ &apos;Utah&apos;: &apos;UT&apos;,
+ &apos;Vermont&apos;: &apos;VT&apos;,
+ &apos;Virgin Islands&apos;: &apos;VI&apos;,
+ &apos;Virginia&apos;: &apos;VA&apos;,
+ &apos;Washington&apos;: &apos;WA&apos;,
+ &apos;West Virginia&apos;: &apos;WV&apos;,
+ &apos;Wisconsin&apos;: &apos;WI&apos;,
+ &apos;Wyoming&apos;: &apos;WY&apos;}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
